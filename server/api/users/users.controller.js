@@ -1,57 +1,34 @@
-const _ = require('lodash');
+const User = require('./user.model');
 
-// exports.params = function(req, res, next, id) {
-//   User.findById(id)
-//     .then(function(user) {
-//       if (!user) {
-//         next(new Error('No user with that id'));
-//       } else {
-//         req.user = user;
-//         next();
-//       }
-//     }, function(err) {
-//       next(err);
-//     });
-// };
+module.exports = {
+  // params(req, res, next, id) {
+  //   User.findById(id)
+  //     .then(function(user) {
+  //       if (!user) {
+  //         next(new Error('No user with that id'));
+  //       } else {
+  //         req.user = user;
+  //         next();
+  //       }
+  //     }, function(err) {
+  //       next(err);
+  //     });
+  //   }
+  // }
 
-exports.get = function(req, res, next) {
-  let users = [
-    {
-      id:1,
-      fullname: 'Alejandro Villalobos',
-      tel1: '24718174',
-      tel2: '',
-      address: 'Santa Cecilia',
-      roleId: 1,
-      role: {
-        id: 1,
-        role: 'Admin'
-      },
-      email: 'email@email.com'
-    },
-    {
-      id:2,
-      fullname: 'Marvin Solis',
-      tel1: '24718174',
-      tel2: '',
-      address: 'Santa Cecilia',
-      roleId: 2,
-      role: {
-        id: 2,
-        role: 'Mecanico'
-      },
-      email: 'email@email.com'
-    }
-  ];
-  res.json(users)
-};
+  get(req, res, next) {
+    return User
+      .findAll()
+      .then(user => res.status(201).send(user))
+      .catch(user => res.status(400).send(user));
+  },
 
-// exports.getOne = function(req, res, next) {
+// getOne(req, res, next) {
 //   var user = req.user;
 //   res.json(user);
 // };
 
-// exports.put = function(req, res, next) {
+// put(req, res, next) {
 //   var user = req.user;
 
 //   var update = req.body;
@@ -67,18 +44,19 @@ exports.get = function(req, res, next) {
 //   })
 // };
 
-// exports.post = function(req, res, next) {
-//   var newUser = req.body;
+  post(req, res, next) {
+    var newUser = req.body;
 
-//   User.create(newUser)
-//     .then(function(user) {
-//       res.json(user);
-//     }, function(err) {
-//       next(err);
-//     });
-// };
+    //validate user info
+    User.create(newUser)
+      .then(function(user) {
+        res.json(user);
+      }, function(err) {
+        next(err);
+      });
+  },
 
-// exports.delete = function(req, res, next) {
+// delete(req, res, next) {
 //   req.user.remove(function(err, removed) {
 //     if (err) {
 //       next(err);
@@ -87,3 +65,4 @@ exports.get = function(req, res, next) {
 //     }
 //   });
 // };
+};
