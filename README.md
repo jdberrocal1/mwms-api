@@ -6,14 +6,16 @@ Rest API for the Mechanical Workshop Management System
 1 - Validate if Id already exist before creating new user
 2 - Sanitize values
 3 - Add docs
-4 - Check error messages
-5 - Check http-headers returned
-6 - Add user delete endpoint
-7 - Add user by id endpoint
-8 - Add Authentication
-9 - Add Authorization
-10 - Add roles
-11 - ...
+4 - Add testing
+5 - Add code coverage
+6 - Check error messages
+7 - Check http-headers returned
+8 - Add user delete endpoint
+9 - Add user by id endpoint
+10 - Add Authentication
+11 - Add Authorization
+12 - Add roles
+13 - ...
 
 # Setup
 
