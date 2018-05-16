@@ -1,4 +1,5 @@
 const User = require('./user.model');
+const uuidv1 = require('uuid/v1');
 
 module.exports = {
   // params(req, res, next, id) {
@@ -45,9 +46,10 @@ module.exports = {
 // };
 
   post(req, res, next) {
-    var newUser = req.body;
+    const newUser = req.body;
 
     //validate user info
+    newUser.id = uuidv1();
     User
       .create(newUser)
       .then(user => res.status(201).send(user))
