@@ -1,24 +1,23 @@
 var _ = require('lodash');
 
-var config = {
+const config = {
   dev: 'development',
   test: 'testing',
   prod: 'production',
   port: process.env.PORT || 3000,
   // 10 days in minutes
   expireTime: 24 * 60 * 10,
-
 };
 
 process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
 config.env = process.env.NODE_ENV;
 
-var envConfig;
+let envConfig;
 // require could error out if
 // the file don't exist so lets try this statement
 // and fallback to an empty object if it does error out
 try {
-  envConfig = require('./' + config.env);
+  envConfig = require(`./${config.env}`);
   // just making sure the require actually
   // got something back :)
   envConfig = envConfig || {};

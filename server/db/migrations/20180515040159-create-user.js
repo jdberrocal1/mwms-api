@@ -35,7 +35,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       isDeleted: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

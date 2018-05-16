@@ -19,7 +19,7 @@ module.exports = {
   get(req, res, next) {
     return User
       .findAll()
-      .then(user => res.status(201).send(user))
+      .then(user => res.status(200).send(user))
       .catch(user => res.status(400).send(user));
   },
 
@@ -48,12 +48,10 @@ module.exports = {
     var newUser = req.body;
 
     //validate user info
-    User.create(newUser)
-      .then(function(user) {
-        res.json(user);
-      }, function(err) {
-        next(err);
-      });
+    User
+      .create(newUser)
+      .then(user => res.status(201).send(user))
+      .catch(err => next(err));
   },
 
 // delete(req, res, next) {
